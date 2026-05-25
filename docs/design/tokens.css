@@ -1,0 +1,261 @@
+/*
+ * LSP Explorer — Design Tokens
+ * ============================================================
+ * Tailwind CSS v4 compatible — importar en globals.css con:
+ *   @import "../docs/design/tokens.css";
+ *
+ * Estos tokens definen el sistema de diseño completo.
+ * En Tailwind v4 el bloque @theme genera utilidades automáticamente:
+ *   --color-lego-yellow → bg-lego-yellow, text-lego-yellow, border-lego-yellow
+ * ============================================================
+ */
+
+/* ─── Google Fonts ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ─── CSS Custom Properties (Runtime / non-Tailwind uso) ────── */
+:root {
+  /* === COLORES === */
+
+  /* Paleta LEGO Core */
+  --lego-yellow:        #FFD700;   /* Amarillo LEGO icónico */
+  --lego-yellow-light:  #FFF0A0;   /* Fondo amarillo suave */
+  --lego-yellow-dark:   #D4A800;   /* Hover / pressed state */
+  --lego-red:           #E3000B;   /* Rojo LEGO — acciones primarias */
+  --lego-red-dark:      #B80009;   /* Hover en rojo */
+  --lego-blue:          #006CB7;   /* Azul LEGO — info / links */
+  --lego-blue-dark:     #00508A;   /* Hover en azul */
+  --lego-green:         #00A650;   /* Verde LEGO — éxito / habilitado */
+  --lego-green-dark:    #007A3A;   /* Hover en verde */
+
+  /* Neutros */
+  --ink-900:            #111118;   /* Fondo dark máximo */
+  --ink-800:            #1C1C24;   /* Fondo dark principal */
+  --ink-700:            #2A2A36;   /* Surface dark */
+  --ink-600:            #3D3D4E;   /* Border dark */
+  --ink-400:            #6B6B84;   /* Texto secundario */
+  --ink-200:            #A9A9BF;   /* Texto muted */
+  --ink-100:            #E4E4EF;   /* Border light */
+  --ink-050:            #F4F4F9;   /* Fondo off-white */
+  --ink-000:            #FFFFFF;   /* Blanco puro */
+
+  /* Semánticos */
+  --color-bg:           var(--ink-050);
+  --color-bg-elevated:  var(--ink-000);
+  --color-surface:      var(--ink-000);
+  --color-border:       var(--ink-100);
+  --color-text:         var(--ink-800);
+  --color-text-muted:   var(--ink-400);
+  --color-text-subtle:  var(--ink-200);
+  --color-accent:       var(--lego-yellow);
+  --color-accent-dark:  var(--lego-yellow-dark);
+  --color-cta:          var(--lego-red);
+  --color-cta-dark:     var(--lego-red-dark);
+  --color-info:         var(--lego-blue);
+  --color-success:      var(--lego-green);
+
+  /* === TIPOGRAFÍA === */
+  --font-display:       'Bricolage Grotesque', Georgia, serif;
+  --font-body:          'Instrument Sans', system-ui, sans-serif;
+  --font-mono:          'JetBrains Mono', 'Courier New', monospace;
+
+  /* Escala tipográfica (Major Third — 1.250) */
+  --text-2xs:     0.64rem;   /*  ~10px */
+  --text-xs:      0.75rem;   /*  12px  */
+  --text-sm:      0.875rem;  /*  14px  */
+  --text-base:    1rem;      /*  16px  */
+  --text-md:      1.125rem;  /*  18px  */
+  --text-lg:      1.25rem;   /*  20px  */
+  --text-xl:      1.5rem;    /*  24px  */
+  --text-2xl:     1.875rem;  /*  30px  */
+  --text-3xl:     2.25rem;   /*  36px  */
+  --text-4xl:     3rem;      /*  48px  */
+  --text-5xl:     3.75rem;   /*  60px  */
+  --text-6xl:     4.5rem;    /*  72px  */
+
+  /* Pesos */
+  --font-regular:   400;
+  --font-medium:    500;
+  --font-semibold:  600;
+  --font-bold:      700;
+  --font-extrabold: 800;
+
+  /* Line heights */
+  --leading-tight:   1.15;
+  --leading-snug:    1.3;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.7;
+
+  /* Letter spacing */
+  --tracking-tightest: -0.04em;
+  --tracking-tighter:  -0.025em;
+  --tracking-tight:    -0.015em;
+  --tracking-normal:    0em;
+  --tracking-wide:      0.025em;
+  --tracking-wider:     0.05em;
+  --tracking-widest:    0.12em;
+
+  /* === ESPACIADO === */
+  /* Base unit: 4px — escala inspirada en el stud LEGO */
+  --space-0:    0;
+  --space-px:   1px;
+  --space-0h:   2px;
+  --space-1:    4px;    /* 1 stud unit */
+  --space-2:    8px;    /* 2 studs */
+  --space-3:    12px;
+  --space-4:    16px;   /* 4 studs — base component spacing */
+  --space-5:    20px;
+  --space-6:    24px;
+  --space-8:    32px;
+  --space-10:   40px;
+  --space-12:   48px;
+  --space-14:   56px;
+  --space-16:   64px;
+  --space-20:   80px;
+  --space-24:   96px;
+  --space-32:  128px;
+  --space-40:  160px;
+  --space-48:  192px;
+  --space-64:  256px;
+
+  /* === BORDER RADIUS === */
+  /* Las esquinas deben sentirse construidas, no orgánicas */
+  --radius-none:  0;
+  --radius-xs:    2px;
+  --radius-sm:    4px;    /* LEGO corner — esquinas limpias */
+  --radius-md:    8px;    /* Cards pequeñas */
+  --radius-lg:    12px;   /* Cards principales */
+  --radius-xl:    16px;   /* Modales, sheets */
+  --radius-2xl:   24px;   /* Hero elements */
+  --radius-full:  9999px; /* Pills, badges */
+
+  /* === SOMBRAS === */
+  /* Sistema de 5 niveles — inspirado en las capas de referencia (imagen 1) */
+  --shadow-xs:    0 1px 2px 0 rgb(17 17 24 / 0.06);
+  --shadow-sm:    0 1px 3px 0 rgb(17 17 24 / 0.08), 0 1px 2px -1px rgb(17 17 24 / 0.08);
+  --shadow-md:    0 4px 6px -1px rgb(17 17 24 / 0.07), 0 2px 4px -2px rgb(17 17 24 / 0.07);
+  --shadow-lg:    0 10px 15px -3px rgb(17 17 24 / 0.08), 0 4px 6px -4px rgb(17 17 24 / 0.05);
+  --shadow-xl:    0 20px 25px -5px rgb(17 17 24 / 0.08), 0 8px 10px -6px rgb(17 17 24 / 0.04);
+  --shadow-2xl:   0 25px 50px -12px rgb(17 17 24 / 0.20);
+
+  /* Sombras con acento amarillo */
+  --shadow-yellow-sm: 0 4px 12px -2px rgb(255 215 0 / 0.35);
+  --shadow-yellow-md: 0 8px 24px -4px rgb(255 215 0 / 0.30);
+  --shadow-yellow-lg: 0 16px 40px -8px rgb(255 215 0 / 0.25);
+
+  /* Sombra de elevación — cards flotantes */
+  --shadow-float:
+    0 0 0 1px rgb(17 17 24 / 0.04),
+    0 2px 4px -1px rgb(17 17 24 / 0.06),
+    0 8px 16px -4px rgb(17 17 24 / 0.08),
+    0 24px 40px -8px rgb(17 17 24 / 0.06);
+
+  /* === TRANSICIONES === */
+  --ease-out:     cubic-bezier(0.0, 0.0, 0.2, 1.0);
+  --ease-in:      cubic-bezier(0.4, 0.0, 1.0, 1.0);
+  --ease-inout:   cubic-bezier(0.4, 0.0, 0.2, 1.0);
+  --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1.0);  /* Rebote suave */
+  --ease-snappy:  cubic-bezier(0.2, 0.0, 0.0, 1.0);
+
+  --duration-instant:   50ms;
+  --duration-fast:     100ms;
+  --duration-normal:   200ms;
+  --duration-slow:     300ms;
+  --duration-slower:   500ms;
+  --duration-slowest:  800ms;
+
+  /* === Z-INDEX === */
+  --z-below:    -1;
+  --z-base:      0;
+  --z-raised:   10;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-overlay:  300;
+  --z-modal:    400;
+  --z-toast:    500;
+  --z-tooltip:  600;
+
+  /* === LAYOUT === */
+  --container-xs:   480px;
+  --container-sm:   640px;
+  --container-md:   768px;
+  --container-lg:   1024px;
+  --container-xl:   1280px;
+  --container-2xl:  1440px;
+  --container-max:  1600px;
+
+  /* Sidebar / panel widths */
+  --panel-technique: 320px;
+  --panel-activity:  360px;
+  --nav-height:       64px;
+}
+
+/* ─── Tailwind v4 @theme block ───────────────────────────────
+ * Estos tokens se convierten en utilidades de Tailwind.
+ * Pegar este bloque en globals.css después de @import "tailwindcss";
+ * ─────────────────────────────────────────────────────────── */
+@theme {
+  /* Colores */
+  --color-lego-yellow:       #FFD700;
+  --color-lego-yellow-light: #FFF0A0;
+  --color-lego-yellow-dark:  #D4A800;
+  --color-lego-red:          #E3000B;
+  --color-lego-red-dark:     #B80009;
+  --color-lego-blue:         #006CB7;
+  --color-lego-blue-dark:    #00508A;
+  --color-lego-green:        #00A650;
+  --color-lego-green-dark:   #007A3A;
+
+  --color-ink-900:  #111118;
+  --color-ink-800:  #1C1C24;
+  --color-ink-700:  #2A2A36;
+  --color-ink-600:  #3D3D4E;
+  --color-ink-400:  #6B6B84;
+  --color-ink-200:  #A9A9BF;
+  --color-ink-100:  #E4E4EF;
+  --color-ink-050:  #F4F4F9;
+  --color-ink-000:  #FFFFFF;
+
+  /* Fuentes */
+  --font-display: 'Bricolage Grotesque', Georgia, serif;
+  --font-body:    'Instrument Sans', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+
+  /* Escala de texto */
+  --text-2xs:  0.64rem;
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-md:   1.125rem;
+  --text-lg:   1.25rem;
+  --text-xl:   1.5rem;
+  --text-2xl:  1.875rem;
+  --text-3xl:  2.25rem;
+  --text-4xl:  3rem;
+  --text-5xl:  3.75rem;
+  --text-6xl:  4.5rem;
+
+  /* Border radius */
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-full: 9999px;
+
+  /* Sombras */
+  --shadow-xs:         0 1px 2px 0 rgb(17 17 24 / 0.06);
+  --shadow-sm:         0 1px 3px 0 rgb(17 17 24 / 0.08), 0 1px 2px -1px rgb(17 17 24 / 0.08);
+  --shadow-md:         0 4px 6px -1px rgb(17 17 24 / 0.07), 0 2px 4px -2px rgb(17 17 24 / 0.07);
+  --shadow-lg:         0 10px 15px -3px rgb(17 17 24 / 0.08), 0 4px 6px -4px rgb(17 17 24 / 0.05);
+  --shadow-xl:         0 20px 25px -5px rgb(17 17 24 / 0.08), 0 8px 10px -6px rgb(17 17 24 / 0.04);
+  --shadow-float:      0 0 0 1px rgb(17 17 24 / 0.04), 0 2px 4px -1px rgb(17 17 24 / 0.06), 0 8px 16px -4px rgb(17 17 24 / 0.08), 0 24px 40px -8px rgb(17 17 24 / 0.06);
+  --shadow-yellow-sm:  0 4px 12px -2px rgb(255 215 0 / 0.35);
+  --shadow-yellow-md:  0 8px 24px -4px rgb(255 215 0 / 0.30);
+  --shadow-yellow-lg:  0 16px 40px -8px rgb(255 215 0 / 0.25);
+
+  /* Transiciones */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1.0);
+  --ease-snappy: cubic-bezier(0.2, 0.0, 0.0, 1.0);
+}
