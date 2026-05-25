@@ -318,18 +318,51 @@ function Hero({ selectedCualidad, onCualidadChange }: HeroProps) {
 // ─── INFOGRAFÍA ───────────────────────────────────────────────────────────────
 
 function Infografia({ data }: { data: TallerData }) {
+  const temasLeft = data.temas.slice(0, 3);
+  const temasRight = data.temas.slice(3);
+
   return (
     <section
       style={{
-        background: 'var(--ink-050)',
-        borderBottom: '1px solid var(--ink-100)',
-        padding: '48px 24px',
+        background: '#FAFAF7',
+        padding: '64px 24px 56px',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        {/* Label */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 28 }}>
-          <div style={{ width: 3, height: 20, borderRadius: 2, background: 'var(--lego-yellow)' }} />
+      {/* Organic blob — mint green, top-left */}
+      <div
+        style={{
+          position: 'absolute',
+          top: -100,
+          left: -80,
+          width: 480,
+          height: 480,
+          borderRadius: '63% 37% 54% 46% / 55% 48% 52% 45%',
+          background: 'rgba(0,166,80,0.09)',
+          filter: 'blur(48px)',
+          pointerEvents: 'none',
+        }}
+      />
+      {/* Organic blob — amber yellow, bottom-right */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: -80,
+          right: -60,
+          width: 420,
+          height: 420,
+          borderRadius: '38% 62% 46% 54% / 60% 44% 56% 40%',
+          background: 'rgba(255,215,0,0.13)',
+          filter: 'blur(44px)',
+          pointerEvents: 'none',
+        }}
+      />
+
+      <div style={{ maxWidth: 940, margin: '0 auto', position: 'relative' }}>
+
+        {/* Header — centered label + title + subtitle */}
+        <div style={{ textAlign: 'center', marginBottom: 44 }}>
           <span
             style={{
               fontFamily: 'var(--font-body)',
@@ -338,178 +371,252 @@ function Infografia({ data }: { data: TallerData }) {
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
               color: 'var(--ink-400)',
+              display: 'block',
+              marginBottom: 12,
             }}
           >
             Diagnóstico Organizacional
           </span>
+          <h2
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 800,
+              fontSize: 'clamp(1.375rem, 2.5vw, 1.875rem)',
+              letterSpacing: '-0.025em',
+              color: 'var(--ink-800)',
+              lineHeight: 1.2,
+              marginBottom: 10,
+            }}
+          >
+            {data.nombre}
+          </h2>
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.9375rem',
+              fontStyle: 'italic',
+              color: 'var(--ink-400)',
+              lineHeight: 1.6,
+              maxWidth: 520,
+              margin: '0 auto',
+            }}
+          >
+            {data.objetivo}
+          </p>
         </div>
 
-        {/* Two-panel layout */}
+        {/* Two cards + dotted connector */}
         <div
           className="infografia-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: '1fr auto 1fr',
-            gap: 0,
-            alignItems: 'stretch',
+            gridTemplateColumns: '1fr 56px 1fr',
+            alignItems: 'start',
           }}
         >
-          {/* Left — Problema */}
+          {/* Left card — Problema */}
           <div
             style={{
-              background: 'var(--lego-yellow-light)',
-              border: '1.5px solid var(--lego-yellow)',
-              borderRadius: 16,
-              padding: '28px 28px',
+              background: '#FFD700',
+              borderRadius: 20,
+              padding: '28px 26px 28px',
+              boxShadow:
+                '0 2px 4px rgba(17,17,24,0.06), 0 8px 24px -4px rgba(255,215,0,0.28), 0 24px 48px -12px rgba(17,17,24,0.10)',
             }}
           >
-            <div
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '0.6875rem',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: 'var(--lego-yellow-dark)',
-                marginBottom: 14,
-                display: 'flex',
-                alignItems: 'center',
-                gap: 7,
-              }}
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M7 4v3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                <circle cx="7" cy="10.5" r="0.75" fill="currentColor" />
-              </svg>
-              Problema Subyacente
-            </div>
             <p
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: '1.125rem',
-                fontWeight: 700,
+                fontWeight: 800,
+                fontSize: '0.8125rem',
+                fontStyle: 'normal',
                 color: 'var(--ink-800)',
-                lineHeight: 1.45,
-                marginBottom: 14,
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+                marginBottom: 12,
+              }}
+            >
+              Problemas
+            </p>
+            <p
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontWeight: 400,
+                fontSize: '0.9375rem',
+                fontStyle: 'normal',
+                color: 'var(--ink-800)',
+                lineHeight: 1.6,
+                marginBottom: 20,
               }}
             >
               {data.problema}
             </p>
+            <div
+              style={{
+                height: 1,
+                background: 'rgba(17,17,24,0.12)',
+                marginBottom: 18,
+              }}
+            />
             <p
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '0.875rem',
-                fontWeight: 500,
-                fontStyle: 'italic',
-                color: 'var(--ink-400)',
-                lineHeight: 1.6,
+                fontSize: '0.625rem',
+                fontWeight: 600,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                color: 'rgba(17,17,24,0.45)',
+                marginBottom: 12,
               }}
             >
-              Taller:{' '}
-              <strong style={{ fontStyle: 'normal', color: 'var(--ink-600)' }}>
-                {data.nombre}
-              </strong>
+              Síntomas Clave
             </p>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {temasLeft.map((tema) => (
+                <li
+                  key={tema}
+                  style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '0.875rem',
+                    fontWeight: 400,
+                    fontStyle: 'normal',
+                    color: 'var(--ink-700)',
+                    textDecoration: 'underline',
+                    textDecorationColor: 'rgba(17,17,24,0.25)',
+                    textUnderlineOffset: '3px',
+                    lineHeight: 1.45,
+                  }}
+                >
+                  {tema}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Connector */}
+          {/* Dotted connector line */}
           <div
             className="infografia-connector"
             style={{
               display: 'flex',
+              flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'center',
-              padding: '0 20px',
-            }}
-          >
-            <div style={{ position: 'relative', width: 2, height: '60%' }}>
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  width: 36,
-                  height: 2,
-                  borderTop: '2px dashed var(--lego-yellow)',
-                }}
-              />
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  width: 30,
-                  height: 30,
-                  borderRadius: '50%',
-                  background: 'var(--lego-yellow)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: 'var(--shadow-yellow-sm)',
-                }}
-              >
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M3 7h8M8 4.5 10.5 7 8 9.5" stroke="var(--ink-800)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          {/* Right — Diagnóstico */}
-          <div
-            style={{
-              background: 'var(--lego-yellow-light)',
-              border: '1.5px solid var(--lego-yellow)',
-              borderRadius: 16,
-              padding: '28px 28px',
+              justifyContent: 'flex-start',
+              paddingTop: 28,
+              gap: 0,
             }}
           >
             <div
               style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '0.6875rem',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
+                width: 2,
+                height: 180,
+                backgroundImage:
+                  'repeating-linear-gradient(to bottom, #1C1C24 0, #1C1C24 5px, transparent 5px, transparent 11px)',
+                opacity: 0.18,
+              }}
+            />
+            <div
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: '50%',
+                background: '#1C1C24',
+                opacity: 0.18,
+                marginTop: 4,
+              }}
+            />
+          </div>
+
+          {/* Right card — Diagnóstico */}
+          <div
+            style={{
+              background: '#111118',
+              borderRadius: 20,
+              padding: '28px 26px 28px',
+              boxShadow:
+                '0 2px 4px rgba(0,0,0,0.20), 0 8px 24px -4px rgba(0,0,0,0.28), 0 24px 48px -12px rgba(0,0,0,0.30)',
+            }}
+          >
+            <p
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontWeight: 800,
+                fontSize: '0.8125rem',
+                fontStyle: 'normal',
+                color: '#FFFFFF',
+                letterSpacing: '0.06em',
                 textTransform: 'uppercase',
-                color: 'var(--lego-yellow-dark)',
-                marginBottom: 14,
-                display: 'flex',
-                alignItems: 'center',
-                gap: 7,
+                marginBottom: 12,
               }}
             >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M2 8h1.5L5 4.5l2.5 7L9.5 7l1 2H12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              Diagnóstico del Consultor
-            </div>
+              Diagnóstico Potencial
+            </p>
             <p
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '0.9375rem',
                 fontWeight: 400,
-                fontStyle: 'italic',
-                color: 'var(--ink-700)',
-                lineHeight: 1.75,
-                marginBottom: 14,
+                fontSize: '0.9375rem',
+                fontStyle: 'normal',
+                color: '#FFFFFF',
+                lineHeight: 1.6,
+                marginBottom: 20,
               }}
             >
               {data.diagnostico}
             </p>
+            <div
+              style={{
+                height: 1,
+                background: 'rgba(255,255,255,0.15)',
+                marginBottom: 18,
+              }}
+            />
             <p
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '0.8125rem',
+                fontSize: '0.625rem',
                 fontWeight: 600,
-                color: 'var(--ink-400)',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.45)',
+                marginBottom: 12,
               }}
             >
-              Síntomas y Efectos Organizacionales
+              Efectos Organizacionales
             </p>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {temasRight.map((tema) => (
+                <li
+                  key={tema}
+                  style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '0.875rem',
+                    fontWeight: 400,
+                    fontStyle: 'normal',
+                    color: '#FFFFFF',
+                    textDecoration: 'underline',
+                    textDecorationColor: 'rgba(255,255,255,0.30)',
+                    textUnderlineOffset: '3px',
+                    lineHeight: 1.45,
+                  }}
+                >
+                  {tema}
+                </li>
+              ))}
+            </ul>
           </div>
+        </div>
+
+        {/* Bottom dotted tail — transitions into FilterBar */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 0 }}>
+          <div
+            style={{
+              width: 2,
+              height: 40,
+              backgroundImage:
+                'repeating-linear-gradient(to bottom, #1C1C24 0, #1C1C24 5px, transparent 5px, transparent 11px)',
+              opacity: 0.12,
+            }}
+          />
         </div>
       </div>
     </section>
@@ -1341,6 +1448,7 @@ export default function LSPPage() {
         @media (max-width: 768px) {
           .infografia-grid {
             grid-template-columns: 1fr !important;
+            gap: 24px !important;
           }
           .infografia-connector {
             display: none !important;
