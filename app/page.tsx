@@ -1253,95 +1253,6 @@ function WorkshopGrid({ taller }: { taller: TallerData }) {
   );
 }
 
-// ─── EMPTY PREVIEW ─────────────────────────────────────────────────────────────
-
-function EmptyPreview({ onSelect }: { onSelect: (v: string) => void }) {
-  return (
-    <section style={{ padding: '64px 24px', background: 'var(--ink-000)', textAlign: 'center' }}>
-      <div style={{ maxWidth: 640, margin: '0 auto' }}>
-        <div
-          style={{
-            width: 64,
-            height: 64,
-            borderRadius: '50%',
-            background: 'var(--ink-050)',
-            border: '2px solid var(--ink-100)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto 20px',
-            fontSize: '1.75rem',
-          }}
-        >
-          🧱
-        </div>
-        <h2
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontWeight: 700,
-            fontSize: '1.25rem',
-            color: 'var(--ink-400)',
-            marginBottom: 8,
-          }}
-        >
-          Selecciona un enfoque para comenzar
-        </h2>
-        <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-200)', lineHeight: 1.6 }}>
-          Elige un desafío organizacional arriba. Verás el diagnóstico teórico y podrás
-          filtrar el taller exacto para tu equipo.
-        </p>
-
-        {/* Preview grid */}
-        <div
-          className="workshop-grid"
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginTop: 40 }}
-        >
-          {TALLER_DATA.slice(0, 3).map((t) => (
-            <button
-              key={t.id}
-              onClick={() => onSelect(t.nombre)}
-              style={{
-                background: 'var(--ink-000)',
-                border: '1px solid var(--ink-100)',
-                borderRadius: 12,
-                overflow: 'hidden',
-                cursor: 'pointer',
-                textAlign: 'left',
-                padding: 0,
-                transition: 'box-shadow 200ms, transform 200ms, border-color 150ms',
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.boxShadow = 'var(--shadow-yellow-sm)';
-                el.style.transform = 'translateY(-2px)';
-                el.style.borderColor = 'var(--lego-yellow)';
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.boxShadow = 'none';
-                el.style.transform = 'translateY(0)';
-                el.style.borderColor = 'var(--ink-100)';
-              }}
-            >
-              <div style={{ height: 90, overflow: 'hidden' }}>
-                <img src={t.image} alt={t.imageAlt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
-              <div style={{ padding: '10px 12px' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--ink-800)', lineHeight: 1.3 }}>
-                  {t.nombre}
-                </div>
-                <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.6875rem', color: 'var(--ink-400)', marginTop: 3 }}>
-                  {t.nivel} · {t.duracion}
-                </div>
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 // ─── FOOTER ───────────────────────────────────────────────────────────────────
 
 function Footer() {
@@ -1500,10 +1411,6 @@ export default function LSPPage() {
         {/* ── Step 3: Workshop grid (conditional) ── */}
         {selectedTallerData && <WorkshopGrid taller={selectedTallerData} />}
 
-        {/* ── Empty state ── */}
-        {!selectedCualidad && (
-          <EmptyPreview onSelect={handleCualidadChange} />
-        )}
       </main>
 
       <Footer />
