@@ -11,82 +11,6 @@ import {
   type Nivel,
 } from '@/lib/lsp-data';
 
-// ─── HEADER ───────────────────────────────────────────────────────────────────
-
-function Header() {
-  return (
-    <header
-      style={{
-        background: 'var(--ink-800)',
-        borderBottom: '1px solid var(--ink-700)',
-        position: 'sticky',
-        top: 0,
-        zIndex: 200,
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1280,
-          margin: '0 auto',
-          padding: '0 24px',
-          height: 64,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        {/* Logo */}
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Image
-            src="/white_logo_seriouschange.png"
-            alt="Serious Change"
-            height={36}
-            width={80}
-            style={{ objectFit: 'contain', objectPosition: 'left center' }}
-            priority
-          />
-        </div>
-
-        {/* Nav */}
-        <nav style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
-          {['Metodología', 'Catálogo', 'Contacto'].map((item) => (
-            <a
-              key={item}
-              href="#"
-              className="nav-link-item"
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '0.875rem',
-                fontWeight: 500,
-                color: 'var(--ink-200)',
-                textDecoration: 'none',
-                transition: 'color 100ms',
-              }}
-            >
-              {item}
-            </a>
-          ))}
-          <a
-            href="#catalogo"
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.8125rem',
-              fontWeight: 600,
-              color: 'var(--ink-800)',
-              background: 'var(--lego-yellow)',
-              padding: '7px 16px',
-              borderRadius: 6,
-              textDecoration: 'none',
-            }}
-          >
-            Ver Talleres
-          </a>
-        </nav>
-      </div>
-    </header>
-  );
-}
-
 // ─── HERO ─────────────────────────────────────────────────────────────────────
 
 interface HeroProps {
@@ -1215,36 +1139,204 @@ function WorkshopGrid({ taller }: { taller: TallerData }) {
   );
 }
 
-// ─── FOOTER ───────────────────────────────────────────────────────────────────
+// ─── PROGRAMAS INTEGRADOS ─────────────────────────────────────────────────────
 
-function Footer() {
+const PROGRAMAS = [
+  {
+    code: '01 · BASEPLATE',
+    title: 'The Baseplate: Empower your Game',
+    tagline: 'El estándar de calidad y acreditación para resultados de negocio medibles.',
+    accentColor: 'var(--lego-yellow)',
+    accentBg: 'rgba(255,215,0,0.1)',
+    accentBorder: 'rgba(255,215,0,0.25)',
+    bullets: [
+      {
+        label: 'Propósito',
+        text: 'Profesionalizar y acreditar a facilitadores en las siete AT básicas, junto con las nuevas ST y AGT exclusivas de Serious Change.',
+        sub: null,
+      },
+      {
+        label: 'Valor Agregado',
+        text: null,
+        sub: [
+          { name: 'Fidelidad Metodológica', desc: 'Proceso centrado en el modelo físico, neutralidad total.' },
+          { name: 'Maximización del Impacto', desc: 'Estado de Flow (equilibrio reto-habilidad) y 100% de participación.' },
+          { name: 'Transferencia de Resultados (Kirkpatrick)', desc: 'Cierre vinculado a planes de acción reales y KPIs (Niveles 3 y 4).' },
+        ],
+      },
+      {
+        label: 'Aplicación',
+        text: 'Auditoría cognitiva de sistemas y diseño de talleres de alta complejidad.',
+        sub: null,
+      },
+    ],
+  },
+  {
+    code: '02 · CONNECTORS',
+    title: 'Connectors: Link ideas',
+    tagline: 'Evolución del modelo GreenBricks. La organización, dueña de su proceso de mejora continua.',
+    accentColor: 'var(--lego-blue)',
+    accentBg: 'rgba(0,108,183,0.1)',
+    accentBorder: 'rgba(0,108,183,0.25)',
+    bullets: [
+      {
+        label: 'Propósito',
+        text: 'Acreditar a la Alta Dirección y Mandos Medios en técnicas certificadas para diseñar e implementar estrategias directamente en la operación.',
+        sub: null,
+      },
+      {
+        label: 'Diferenciador Clave',
+        text: 'Compromiso Decisional — los ejecutores son los mismos diseñadores del proceso.',
+        sub: null,
+      },
+      {
+        label: 'Capas de Proceso Estratégico',
+        text: null,
+        sub: [
+          { name: 'Rigor Sistémico', desc: 'AT 4 (Conexiones), AT 5 (Sistemas) y AT 6 (Emergentes) para mapear interdependencias.' },
+          { name: 'Racionalidad Estratégica', desc: 'Marcos de Porter, Océano Azul y Mintzberg — minimiza sesgos cognitivos.' },
+          { name: 'Impacto Medible', desc: 'Upskilling y reskilling traducidos en capacidad instalada permanente para la resiliencia.' },
+        ],
+      },
+    ],
+  },
+] as const;
+
+function ProgramasIntegrados() {
   return (
-    <footer style={{ background: 'var(--ink-900)', borderTop: '1px solid var(--ink-800)', padding: '40px 24px', marginTop: 'auto' }}>
-      <div
-        style={{
-          maxWidth: 1100,
-          margin: '0 auto',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: 16,
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Image
-            src="/white_logo_seriouschange.png"
-            alt="Serious Change"
-            height={28}
-            width={64}
-            style={{ objectFit: 'contain', objectPosition: 'left center' }}
-          />
+    <section style={{ padding: '64px 24px 80px', background: 'var(--ink-900)' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+        {/* Section header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 40 }}>
+          <div
+            style={{
+              fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: '0.6875rem',
+              letterSpacing: '0.15em', color: 'var(--lego-yellow)',
+              background: 'rgba(255,215,0,0.08)', border: '1px solid rgba(255,215,0,0.2)',
+              padding: '5px 12px', borderRadius: 4, textTransform: 'uppercase', whiteSpace: 'nowrap',
+            }}
+          >
+            Elementos Integrados
+          </div>
+          <div style={{ flex: 1, height: '1px', background: 'rgba(255,215,0,0.12)' }} />
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-600)' }}>2 programas</span>
         </div>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-600)' }}>
-          LEGO® is a trademark of the LEGO Group · Not affiliated with The LEGO Group
+
+        {/* Intro text */}
+        <p
+          style={{
+            fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-300)',
+            lineHeight: 1.65, maxWidth: 720, marginBottom: 36,
+          }}
+        >
+          Los siguientes elementos transforman la práctica de LEGO® Serious Play® en una herramienta
+          de transferencia estratégica con impacto medible en la organización.
+        </p>
+
+        {/* Cards grid */}
+        <div
+          className="programas-grid"
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}
+        >
+          {PROGRAMAS.map((p) => (
+            <div
+              key={p.code}
+              style={{
+                background: 'var(--ink-800)', borderRadius: 10,
+                borderTop: `3px solid ${p.accentColor}`, padding: '32px 28px',
+              }}
+            >
+              {/* Badge */}
+              <div style={{ marginBottom: 18 }}>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', fontWeight: 700,
+                    color: p.accentColor, background: p.accentBg,
+                    border: `1px solid ${p.accentBorder}`,
+                    padding: '4px 10px', borderRadius: 4, letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  {p.code}
+                </span>
+              </div>
+
+              {/* Title */}
+              <h2
+                style={{
+                  fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.25rem',
+                  color: 'var(--ink-000)', marginBottom: 10, letterSpacing: '-0.025em', lineHeight: 1.2,
+                }}
+              >
+                {p.title}
+              </h2>
+
+              {/* Tagline */}
+              <p
+                style={{
+                  fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: '0.875rem',
+                  color: p.accentColor, marginBottom: 24, lineHeight: 1.45, opacity: 0.9,
+                }}
+              >
+                {p.tagline}
+              </p>
+
+              {/* Divider */}
+              <div style={{ height: 1, background: 'var(--ink-700)', marginBottom: 20 }} />
+
+              {/* Bullets */}
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 16 }}>
+                {p.bullets.map((b) => (
+                  <li key={b.label}>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: b.sub ? 8 : 0 }}>
+                      <div
+                        style={{
+                          width: 6, height: 6, borderRadius: '50%',
+                          background: p.accentColor, flexShrink: 0, marginTop: 2,
+                        }}
+                      />
+                      <div>
+                        <span
+                          style={{
+                            fontFamily: 'var(--font-body)', fontSize: '0.8125rem', fontWeight: 600,
+                            color: 'var(--ink-100)',
+                          }}
+                        >
+                          {b.label}
+                          {b.text && (
+                            <span style={{ fontWeight: 400, color: 'var(--ink-300)' }}>
+                              {': '}{b.text}
+                            </span>
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                    {b.sub && (
+                      <ul style={{ listStyle: 'none', padding: '0 0 0 18px', margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                        {b.sub.map((s) => (
+                          <li key={s.name} style={{ display: 'flex', gap: 8 }}>
+                            <div
+                              style={{
+                                width: 4, height: 4, borderRadius: '50%',
+                                background: 'var(--ink-500)', flexShrink: 0, marginTop: 6,
+                              }}
+                            />
+                            <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'var(--ink-300)', lineHeight: 1.55, margin: 0 }}>
+                              <em style={{ color: 'var(--ink-100)', fontStyle: 'normal', fontWeight: 600 }}>{s.name}:</em>
+                              {' '}{s.desc}
+                            </p>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
-    </footer>
+    </section>
   );
 }
 
@@ -1312,37 +1404,20 @@ export default function LSPPage() {
       <style>{`
         *, *::before, *::after { box-sizing: border-box; }
         select:focus-visible { outline: 2px solid var(--lego-yellow); outline-offset: 2px; }
-        button:focus-visible { outline: 2px solid var(--lego-yellow); outline-offset: 2px; border-radius: 8px; }
-        a:focus-visible { outline: 2px solid var(--lego-yellow); outline-offset: 2px; border-radius: 2px; }
-        .nav-link-item:hover { color: var(--ink-000) !important; }
+        button:focus-visible  { outline: 2px solid var(--lego-yellow); outline-offset: 2px; border-radius: 8px; }
 
         @media (max-width: 768px) {
-          .infografia-grid {
-            grid-template-columns: 1fr !important;
-            gap: 24px !important;
-          }
-          .infografia-connector {
-            display: none !important;
-          }
-          .filter-row {
-            flex-direction: column !important;
-          }
-          .filter-row > div[style*="paddingBottom"] {
-            display: none !important;
-          }
-          .workshop-grid {
-            grid-template-columns: 1fr !important;
-          }
+          .infografia-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+          .infografia-connector { display: none !important; }
+          .filter-row { flex-direction: column !important; }
+          .filter-row > div[style*="paddingBottom"] { display: none !important; }
+          .workshop-grid { grid-template-columns: 1fr !important; }
+          .programas-grid { grid-template-columns: 1fr !important; }
         }
-
         @media (min-width: 769px) and (max-width: 1100px) {
-          .workshop-grid {
-            grid-template-columns: 1fr 1fr !important;
-          }
+          .workshop-grid { grid-template-columns: 1fr 1fr !important; }
         }
       `}</style>
-
-      <Header />
 
       <main style={{ flex: 1 }}>
         {/* ── Step 1: Main dropdown ── */}
@@ -1371,9 +1446,10 @@ export default function LSPPage() {
         {/* ── Step 3: Workshop grid (conditional) ── */}
         {selectedTallerData && <WorkshopGrid taller={selectedTallerData} />}
 
-      </main>
+        {/* ── Programas Integrados (siempre visible) ── */}
+        <ProgramasIntegrados />
 
-      <Footer />
+      </main>
     </>
   );
 }
