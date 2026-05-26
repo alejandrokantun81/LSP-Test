@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import {
   TALLER_DATA,
   CUALIDADES,
@@ -35,54 +36,15 @@ function Header() {
         }}
       >
         {/* Logo */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: '50%',
-              background: 'var(--lego-yellow)',
-              boxShadow: 'inset 0 -3px 0 var(--lego-yellow-dark), 0 2px 8px rgba(255,215,0,0.35)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-            }}
-          >
-            <div
-              style={{
-                width: 14,
-                height: 14,
-                borderRadius: '50%',
-                border: '2.5px solid var(--lego-yellow-dark)',
-              }}
-            />
-          </div>
-          <div>
-            <div
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontWeight: 700,
-                fontSize: '1.0625rem',
-                color: 'var(--ink-000)',
-                letterSpacing: '-0.01em',
-                lineHeight: 1.2,
-              }}
-            >
-              LSP Explorer
-            </div>
-            <div
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '0.6875rem',
-                color: 'var(--ink-400)',
-                letterSpacing: '0.05em',
-                textTransform: 'uppercase',
-              }}
-            >
-              LEGO® Serious Play®
-            </div>
-          </div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Image
+            src="/white_logo_seriouschange.png"
+            alt="Serious Change"
+            height={36}
+            width={80}
+            style={{ objectFit: 'contain', objectPosition: 'left center' }}
+            priority
+          />
         </div>
 
         {/* Nav */}
@@ -1269,16 +1231,14 @@ function Footer() {
           gap: 16,
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--lego-yellow)', flexShrink: 0 }} />
-          <div>
-            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.9375rem', color: 'var(--ink-000)' }}>
-              LSP Explorer
-            </div>
-            <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', color: 'var(--ink-400)' }}>
-              Metodología LEGO® Serious Play® para organizaciones
-            </div>
-          </div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Image
+            src="/white_logo_seriouschange.png"
+            alt="Serious Change"
+            height={28}
+            width={64}
+            style={{ objectFit: 'contain', objectPosition: 'left center' }}
+          />
         </div>
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-600)' }}>
           LEGO® is a trademark of the LEGO Group · Not affiliated with The LEGO Group
